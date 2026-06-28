@@ -1,0 +1,41 @@
+{
+    "it":
+        {
+            "titolo_p": "Configurazione Elettronica",
+            "titolo": "Inserisci Z",
+            "semplificata":"Semplificata",
+            "non_semplificata": "non semplificata",
+            "Help_bott": "Help",
+            "Help": [
+                "Questo programma è un convertitore automatico per la configurazione elettronica, se hai bisogno di nuove informazioni cliccami pure, ma non esagerare",
+                "Se non sai cos'è la configurazione elettronica, in poche parole è la posizione di ogni elettrone, ti consiglio di approfondire su una fonte affidabile",
+                "Puoi inserire un numero atomico (Z) compreso tra 1 e 118.",
+                "Il pulsante accanto questo",
+                "Non credo che possa servirti per altro, puoi lasciarmi in pace, voglio far riposare il mio codice",
+                "Sul serio, basta cliccare… sto iniziando a soffrire",
+                "Basta non ne posso più",
+                "Va bene, mi autodistruggo. Addio",
+                ""
+            ]
+        },
+
+    "en":
+        {
+            "titolo_p": "Electronic Configuration",
+            "titolo": "Enter Z",
+            "semplificata": "Simplified",
+            "non_semplificata": "Not simplified",
+            "Help_bott": "Help",
+            "Help": [
+                "This program is an automatic electron configuration converter. If you need more information, feel free to click me, but don't overdo it.",
+                "If you don't know what electron configuration is, in short it represents the position of each electron. I recommend reading more from a reliable source.",
+                "You can enter an atomic number (Z) between 1 and 118.",
+                "The button next to this one",
+                "I don't think I can help with much else, you can leave me alone now, I want to let my code rest.",
+                "Seriously, stop clicking… I'm starting to suffer.",
+                "Enough, I can't take it anymore.",
+                "Alright, self-destruct activated. Goodbye.",
+                ""
+            ]
+        }
+}

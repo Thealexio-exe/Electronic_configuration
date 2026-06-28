@@ -1,10 +1,21 @@
 import tkinter as tk
+from PIL import Image, ImageTk
+import lingue
 
 # Inizializazione di TK
 root = tk.Tk()
 root.geometry("800x400")
 root.resizable(False, False)
-root.title("Configurazione Elettronica")
+root.title(lingue.testo[lingue.scelta_lingua]["titolo_p"])
+
+# processo per diminuire la dimenzione dell'immagine e poi si converte per tk
+img = Image.open("img/impostazzioni.png").resize((35, 35))
+img_it = Image.open("img/italia.png").resize((20, 15))
+img_en = Image.open("img/ing.png").resize((20, 15))
+
+TK_immagine = ImageTk.PhotoImage(img)
+TK_img_it = ImageTk.PhotoImage(img_it)
+TK_img_en = ImageTk.PhotoImage(img_en)
 
 # Variabili Globali
 tenativi = 0
@@ -28,6 +39,24 @@ orbitali = ["1s",
             "5f",
             "6d",
             "7p"]
+
+# serve a me per non ammzarmi di lavoro
+def T(chiave: str):
+    return lingue.testo[lingue.scelta_lingua][chiave]
+
+# serve a ricaricare tutti i testi dopo il cambio di lingua, è un po lungo ma essenziale
+def refresh():
+    global semplifica_bool, tenativi
+
+    if semplifica_bool:
+        Testo_semplifica.config(text=T("semplificata"))
+    else:
+        Testo_semplifica.config(text=T("non_semplificata"))
+
+    root.title(T("titolo_p"))
+
+    titolo.config(text=T("titolo"))
+    bottone.config(text=T("Help_bott"))
 
 # Logiaca Orbitali
 def logica(orbitale = [],  orbitale_2 = 0):
@@ -124,32 +153,21 @@ def configurazione_semp(Z):
             eletronis -= 86
             return config_base("[Rn]", 15)
     return
-    
+  
 # Logica tasto Help
 def risposta():
     global tenativi, bottone
     tenativi += 1
 
-    if tenativi == 1:
-        risultato.config(text="Questo programma è un convertitore automatico per la configurazione elettronica, se hai bisogno di nuove informazioni cliccami pure, ma non esagerare")
-    elif tenativi == 2:
-        risultato.config(text="Se non sai cos'è la configurazione elettronica, in poche parole è la posizione di ogni elettrone, ti consiglio di approfondire su una fonte affidabile")
-    elif tenativi == 3:
-        risultato.config(text="Puoi inserire un numero atomico (Z) compreso tra 1 e 118.")
-    elif tenativi == 4:
-        risultato.config(text="Non credo che possa servirti per altro, puoi lasciarmi in pace, voglio far riposare il mio codice")
-    elif tenativi == 5:
-        risultato.config(text="Sul serio, basta cliccare… sto iniziando a soffrire")
-    elif tenativi == 6:
-        risultato.config(text="Basta non ne posso più")
-    else:
-        risultato.config(text="Va bene, mi autodistruggo. Addio")
+    risultato.config(text=T("Help")[tenativi])
+    if tenativi >= 8:
         bottone.destroy()
+
     
     return tenativi
 
 # Aggiorna in automatico
-def aggiorna(così_funziona=None):
+def aggiorna(event=None):
     valore = inserisci_testo.get()
 
     if valore == "":
@@ -180,30 +198,85 @@ def aggiorna(così_funziona=None):
 def controllo_semp():
     global semplifica_bool, Testo_semplifica
 
-    if semplifica_bool is False:
+    if not semplifica_bool:
         semplifica_bool = True
-        Testo_semplifica.config(text="Non semplificata", font=("Georgia", 8))
+        Testo_semplifica.config(font=("Georgia", 8))
     else:
         semplifica_bool = False
-        Testo_semplifica.config(text="Semplificata", font=("Georgia", 11))
+        Testo_semplifica.config(font=("Georgia", 11))
+    refresh()
 
     return semplifica_bool
 
+# funzione per impostazioni
+def impostazioni():
+    global wiget_tot, frame, TK_img_it, TK_img_en
+
+    def torna():
+        nonlocal it, en
+
+        it.grid_remove()
+        en.grid_remove()
+
+        for w in wiget_tot:
+            w.grid()
+
+    def lingua_it():
+        lingue.carica_scelta("it")
+
+        refresh()
+        torna()
+        
+
+    def lingua_en():
+        lingue.carica_scelta("en")
+
+        refresh()
+        torna()
+        
+
+    # rende invisibili tutti i tasti e crea due bottoni
+    for w in wiget_tot:
+        w.grid_remove()
+    
+
+    it = tk.Button(
+        frame,
+        image=TK_img_it,
+        text="Italiano",
+        compound="left",
+        font=("Georgia", 15),
+        command=lambda: lingua_it()
+    )
+    it.grid(row=2,column=2, pady=130)
+
+    en = tk.Button(
+        frame,
+        image=TK_img_en,
+        text="English",
+        compound="left",
+        font=("Georgia", 15),
+        command=lambda: lingua_en()
+    )
+    en.grid(row=2, column=1, pady=130, padx=40)
+
+      
 # Griglia 1
 frame = tk.Frame(root)
 frame.pack(pady=40)
 
+
 # Testo iniziale
 titolo = tk.Label(
     frame,
-    text="Inserisci Z",
+    text=T("titolo"),
     font=("Georgia", 24)
 )
 titolo.grid(row=0,column=0, columnspan=3, pady=20)
 
 # Bottone per semplificare
 Testo_semplifica = tk.Button(
-    frame, text= "Semplificata",
+    frame, text= T("semplificata"),
     font=("Georgia", 10), 
     bg="white", fg="blue",
     cursor="hand2", 
@@ -219,15 +292,25 @@ inserisci_testo = tk.Entry(
     cursor="hand2"
 )
 inserisci_testo.grid(row=1, column=1, padx=10)
-inserisci_testo.bind("<KeyRelease>", aggiorna)
+
 
 # Bottone Help
-bottone = tk.Button(frame, text="Help",
+bottone = tk.Button(frame, 
+            text= T("Help_bott"),
             font=("Georgia", 10), 
             bg="white", fg="red",
             cursor="hand2", 
             command=lambda: risposta())
 bottone.grid(row=1, column=2, padx=10)
+
+# bottone per inpostazioni
+bottone_impostazioni = tk.Button(
+    frame,
+    image=TK_immagine,
+    cursor="hand2",
+    command=lambda: impostazioni()
+)
+bottone_impostazioni.grid(row=1,column=3,padx=10)
 
 # Testo risultato
 risultato = tk.Label(
@@ -237,5 +320,9 @@ risultato = tk.Label(
     justify="center"
 )
 risultato.pack(pady=30)
+
+wiget_tot = [titolo, Testo_semplifica, bottone, bottone_impostazioni, inserisci_testo]
+
+inserisci_testo.bind("<KeyRelease>", aggiorna)
 
 root.mainloop()
