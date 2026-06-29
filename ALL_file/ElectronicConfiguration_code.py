@@ -178,10 +178,10 @@ def aggiorna(event=None):
         Z = int(valore)
 
         if Z < 1:
-            risultato.config(text="Z deve essere almeno 1")
+            risultato.config(text=T("errore_z"))
             return
         elif Z > 118:
-            risultato.config(text="Pultroppo Z è maggiore di 118, riproviamo")
+            risultato.config(text=T("Pultroppo Z è maggiore di 118, riproviamo"))
             return 
         
         if semplifica_bool is False:
@@ -192,7 +192,7 @@ def aggiorna(event=None):
             risultato.config(text=configuraziones)
             
     except ValueError: # Gabacci è stato qui
-        risultato.config(text="il testo non è ammesso")
+        risultato.config(text=T("errore_test"))
 
 # ON or OF per la semplificazione 
 def controllo_semp():

@@ -6,6 +6,9 @@
             "semplificata":"Semplificata",
             "non_semplificata": "non semplificata",
             "Help_bott": "Help",
+            "errore_z": "Z deve essere almeno 1",
+            "errore_z2": "Pultroppo Z è maggiore di 118, riproviamo",
+            "errore_test": "il testo non è ammesso",
             "Help": [
                 "Questo programma è un convertitore automatico per la configurazione elettronica, se hai bisogno di nuove informazioni cliccami pure, ma non esagerare",
                 "Se non sai cos'è la configurazione elettronica, in poche parole è la posizione di ogni elettrone, ti consiglio di approfondire su una fonte affidabile",
@@ -26,6 +29,9 @@
             "semplificata": "Simplified",
             "non_semplificata": "Not simplified",
             "Help_bott": "Help",
+            "errore_z": "Z must be at least 1",
+            "errore_z2": "Unfortunately, Z is greater than 118,try again.",
+            "errore_test": "The text is not permitted.",
             "Help": [
                 "This program is an automatic electron configuration converter. If you need more information, feel free to click me, but don't overdo it.",
                 "If you don't know what electron configuration is, in short it represents the position of each electron. I recommend reading more from a reliable source.",
