@@ -181,7 +181,7 @@ def aggiorna(event=None):
             risultato.config(text=T("errore_z"))
             return
         elif Z > 118:
-            risultato.config(text=T("Pultroppo Z è maggiore di 118, riproviamo"))
+            risultato.config(text=T("errore_z2"))
             return 
         
         if semplifica_bool is False:
