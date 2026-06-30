@@ -8,7 +8,8 @@
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 
 
-## **English**
+
+## <img src="All_file\img\ing.png" width="25" height="15"> **English**
 
 
 **Introduction**:
@@ -72,7 +73,7 @@ Results are generated instantly and the program also handles some exceptions in 
 
 **Contacts**: For questions, bug reports or suggestions: `alessioargenti10@gmail.com`
 
-## **Italiano**
+## <img src="All_file\img\italia.png" width="25" height="15"> **Italiano**
 
 **Introduzione**:  
 Questo programma è un piccolo convertitore per la configurazione elettronica (è il mio primo progetto ufficiale pubblicato su GitHub).
